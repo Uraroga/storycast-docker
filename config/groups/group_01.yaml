@@ -1,0 +1,31 @@
+id: group_01
+versione: 1
+stato: approvato
+tipo: duo_podcast
+
+personaggi:
+  - personaggio_1
+  - personaggio_2
+
+contesto:
+  ambiente: "studio podcast"
+  tavolo: "legno chiaro"
+  microfoni: "due microfoni neri da podcast su supporto da tavolo"
+  stile: "illustrato originale, pulito e coerente con i due reference approvati"
+  sfondo: "chiaro e semplice, coerente con le reference dei personaggi"
+
+inquadratura_principale:
+  tipo: "mezzo busto allargato"
+  descrizione: "entrambi i personaggi seduti al tavolo, visibili insieme, con microfoni davanti"
+
+regole_visive:
+  - "Mantenere la stessa grafica, proporzioni e impostazione visiva dei due personaggi reference"
+  - "Il personaggio_1 deve restare chiaramente riconoscibile"
+  - "Il personaggio_2 deve restare chiaramente riconoscibile"
+  - "Non imitare opere, serie o personaggi esistenti"
+  - "La scena deve sembrare parte dello stesso progetto illustrato"
+  - "I due personaggi devono avere coerenza di scala, illuminazione e stile"
+
+file_previsti:
+  reference: "assets/groups/group_01_duo_neutral_brightroom_v1.png"
+  approved: "assets/groups/group_01_duo_neutral_brightroom_v1.png"

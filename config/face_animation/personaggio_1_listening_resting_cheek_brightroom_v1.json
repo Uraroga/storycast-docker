@@ -1,0 +1,49 @@
+{
+  "face": {
+    "x": 0.423,
+    "y": 0.122,
+    "width": 0.166,
+    "height": 0.284
+  },
+  "left_eye": {
+    "center_x": 0.4585,
+    "center_y": 0.2655,
+    "width": 0.0350,
+    "height": 0.0320,
+    "angle_deg": -7.0,
+    "closure_line": 0.54,
+    "feather": 0.18,
+    "padding": 0.24,
+    "close_amount": 0.94,
+    "upper_lid_weight": 0.92,
+    "lower_lid_weight": 0.24,
+    "preserve_iris_ratio": 0.24,
+    "preserve_lashes": true,
+    "asymmetry_bias": -0.16
+  },
+  "right_eye": {
+    "center_x": 0.5135,
+    "center_y": 0.2350,
+    "width": 0.0340,
+    "height": 0.0310,
+    "angle_deg": 8.5,
+    "closure_line": 0.56,
+    "feather": 0.13,
+    "padding": 0.20,
+    "close_amount": 0.97,
+    "upper_lid_weight": 0.84,
+    "lower_lid_weight": 0.34,
+    "preserve_iris_ratio": 0.16,
+    "preserve_lashes": false,
+    "asymmetry_bias": 0.10
+  },
+  "mouth": {
+    "center_x": 0.4965,
+    "center_y": 0.3360,
+    "width": 0.0470,
+    "height": 0.0280,
+    "angle_deg": -5.0,
+    "feather": 0.16,
+    "padding": 0.20
+  }
+}

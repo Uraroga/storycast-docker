@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "instruction_profile": "english_default",
+  "instruction_profiles": {
+    "english_default": {
+      "instruction_language": "English",
+      "spoken_language": "Italian",
+      "emotion_template": " Requested delivery emotion: {emotion}.",
+      "unknown_emotion_value": "neutral"
+    },
+    "italian_legacy": {
+      "instruction_language": "Italian",
+      "spoken_language": "Italian",
+      "emotion_template": " Emozione richiesta: {emotion}.",
+      "unknown_emotion_value": "neutra"
+    }
+  },
+  "emotion_mappings": {
+    "english_default": {
+      "curiosa": "curious", "curioso": "curious", "riflessivo": "reflective", "sorpresa": "surprised",
+      "calmo": "calm", "cordiale": "friendly", "allegra": "cheerful",
+      "serio": "serious", "preoccupata": "concerned", "rassicurante": "reassuring"
+    },
+    "italian_legacy": {
+      "curiosa": "curiosa", "curioso": "curioso", "riflessivo": "riflessivo", "sorpresa": "sorpresa",
+      "calmo": "calmo", "cordiale": "cordiale", "allegra": "allegra",
+      "serio": "serio", "preoccupata": "preoccupata", "rassicurante": "rassicurante"
+    }
+  },
+  "voices": {
+    "personaggio_1": {
+      "character_id": "personaggio_1",
+      "voice": "Vivian",
+      "gender": "female",
+      "language": "Italian",
+      "instruction": "Parla in italiano naturale con voce brillante, cordiale, curiosa e naturale; mantieni ottima chiarezza e timbro stabile.",
+      "instructions": {
+        "english_default": "Speak in natural Italian with a warm, bright, curious, and friendly female voice. Use a medium pace, clear pronunciation, stable vocal identity, and subtle expressiveness. Speak only the supplied Italian text. Do not switch language, translate, add words, or read these instructions aloud.",
+        "italian_legacy": "Parla in italiano naturale con voce brillante, cordiale, curiosa e naturale; mantieni ottima chiarezza e timbro stabile."
+      },
+      "tone": "brillante, cordiale, curioso, naturale",
+      "pace": "medium",
+      "seed": 9001,
+      "enabled": true,
+      "parameters": {"do_sample": true, "temperature": 0.65, "top_p": 0.90, "top_k": 30, "repetition_penalty": 1.10, "subtalker_dosample": true, "subtalker_temperature": 0.65, "subtalker_top_p": 0.90, "subtalker_top_k": 30, "max_new_tokens": 8192}
+    },
+    "personaggio_2": {
+      "character_id": "personaggio_2",
+      "voice": "Ryan",
+      "gender": "male",
+      "language": "Italian",
+      "instruction": "Parla in italiano naturale con voce calma, riflessiva, amichevole e rassicurante; usa un ritmo leggermente più lento e timbro stabile.",
+      "instructions": {
+        "english_default": "Speak in natural Italian with a calm, reflective, friendly, and reassuring male voice. Use a slightly slower pace, clear pronunciation, stable vocal identity, and restrained expressiveness. Speak only the supplied Italian text. Do not switch language, translate, add words, or read these instructions aloud.",
+        "italian_legacy": "Parla in italiano naturale con voce calma, riflessiva, amichevole e rassicurante; usa un ritmo leggermente più lento e timbro stabile."
+      },
+      "tone": "calmo, riflessivo, amichevole, rassicurante",
+      "pace": "slightly_slow",
+      "seed": 9001,
+      "enabled": true,
+      "parameters": {"do_sample": true, "temperature": 0.65, "top_p": 0.90, "top_k": 30, "repetition_penalty": 1.10, "subtalker_dosample": true, "subtalker_temperature": 0.65, "subtalker_top_p": 0.90, "subtalker_top_k": 30, "max_new_tokens": 8192}
+    }
+  }
+}

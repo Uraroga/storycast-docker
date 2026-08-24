@@ -1,0 +1,110 @@
+services:
+  storycast-cleanup:
+    image: storycast-controller:local
+    working_dir: /app
+    user: "${STORYCAST_UID:-1000}:${STORYCAST_GID:-1000}"
+    entrypoint: ["python", "-m", "storycast.cleanup"]
+    volumes:
+      - ./storycast:/app/storycast:ro
+      - ./assets:/app/assets:ro
+      - ./config:/app/config:ro
+      - ./input:/app/input:ro
+      - ./work:/app/work
+      - ./output:/app/output
+      - ./logs:/app/logs
+    network_mode: none
+    init: true
+    security_opt:
+      - no-new-privileges:true
+
+  storycast-controller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: storycast-controller:local
+    working_dir: /app
+    user: "${STORYCAST_UID:-1000}:${STORYCAST_GID:-1000}"
+    volumes:
+      - ./storycast:/app/storycast:ro
+      - ./tests:/app/tests:ro
+      - ./assets:/app/assets:ro
+      - ./config:/app/config:ro
+      - ./input:/app/input:ro
+      - ./models:/app/models:ro
+      - ./work:/app/work
+      - ./output:/app/output
+      - ./logs:/app/logs
+    mem_limit: 256m
+    cpus: 1.0
+    network_mode: none
+    init: true
+
+  storycast-tts:
+    build:
+      context: .
+      dockerfile: Dockerfile.tts
+    image: storycast-tts:local
+    working_dir: /app
+    user: "${STORYCAST_UID:-1000}:${STORYCAST_GID:-1000}"
+    volumes:
+      - ./storycast:/app/storycast:ro
+      - ./tests:/app/tests:ro
+      - ./assets:/app/assets:ro
+      - ./config:/app/config:ro
+      - ./input:/app/input:ro
+      - ${STORYCAST_MODELS_HOST:-./models}:/models:ro
+      - ./work:/app/work
+      - ./output:/app/output
+      - ./logs:/app/logs
+    environment:
+      STORYCAST_LOG_LEVEL: "${STORYCAST_LOG_LEVEL:-INFO}"
+      STORYCAST_LOG_KEEP: "${STORYCAST_LOG_KEEP:-20}"
+      STORYCAST_TIMEZONE: "${STORYCAST_TIMEZONE:-Europe/Rome}"
+      CUDA_VISIBLE_DEVICES: ""
+      ATEN_CPU_CAPABILITY: default
+      ONEDNN_MAX_CPU_ISA: AVX
+      DNNL_MAX_CPU_ISA: AVX
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HOME: /tmp
+      USER: storycast
+      LOGNAME: storycast
+      XDG_CACHE_HOME: /tmp/.cache
+      HF_HOME: /tmp/huggingface
+      TORCHINDUCTOR_CACHE_DIR: /tmp/torchinductor
+    mem_limit: 8g
+    cpus: 2.0
+    network_mode: none
+    init: true
+    security_opt:
+      - no-new-privileges:true
+
+  storycast-renderer:
+    build:
+      context: .
+      dockerfile: Dockerfile.renderer
+    image: storycast-renderer:local
+    working_dir: /app
+    user: "${STORYCAST_UID:-1000}:${STORYCAST_GID:-1000}"
+    volumes:
+      - ./storycast:/app/storycast:ro
+      - ./scripts:/app/scripts:ro
+      - ./tests:/app/tests:ro
+      - ./assets:/app/assets:ro
+      - ./config:/app/config:ro
+      - ./input:/app/input:ro
+      - ./work:/app/work
+      - ./output:/app/output
+      - ./logs:/app/logs
+    environment:
+      HOME: /tmp
+      OMP_NUM_THREADS: "2"
+      PYTHONUNBUFFERED: "1"
+    mem_limit: 2g
+    cpus: 2.0
+    network_mode: none
+    init: true
+    security_opt:
+      - no-new-privileges:true

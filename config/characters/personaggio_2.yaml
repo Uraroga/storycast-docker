@@ -1,0 +1,37 @@
+id: personaggio_2
+versione: 1
+stato: approvato
+ruolo: co-conduttore
+
+aspetto:
+  genere: uomo
+  eta_apparente: "34-38 anni"
+  capelli: "castano chiaro, corti, leggermente ondulati"
+  occhi: "verde-grigio"
+  barba: "barba corta e curata"
+  espressione_base: "calma, riflessiva e amichevole"
+  carnagione: "chiara e naturale"
+
+abbigliamento:
+  maglietta: "grigio chiaro"
+  giacca: "marrone ruggine, leggera e informale"
+  cuffie: "nere, circumaurali"
+  accessorio: "orologio semplice con cinturino scuro"
+
+personalita:
+  - riflessivo
+  - paziente
+  - razionale
+  - ironico
+  - rassicurante
+
+regole_visive:
+  - "Mantenere sempre riconoscibili volto, capelli, barba e occhi"
+  - "Non cambiare i colori principali dell'abbigliamento"
+  - "Non imitare personaggi, opere o stili esistenti"
+  - "Usare uno stile illustrato originale e coerente con il personaggio 1"
+  - "Mantenere la stessa grafica, proporzioni e impostazione visiva del personaggio 1"
+  - "Il microfono deve essere nero e adatto a uno studio podcast"
+  - "Il personaggio deve essere chiaramente distinto dal personaggio 1"
+
+immagine_principale: "assets/characters/personaggio_2/personaggio_2_talking_open_hand_brightroom_v1.png"

@@ -1,0 +1,6 @@
+FROM voiceover-to-video:local
+WORKDIR /app
+COPY storycast /app/storycast
+COPY tests /app/tests
+ENV PYTHONPYCACHEPREFIX=/tmp/pycache
+ENTRYPOINT ["python", "-m", "storycast.visual_cli"]

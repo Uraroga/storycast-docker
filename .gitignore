@@ -1,0 +1,79 @@
+# Documenti interni di lavorazione
+AGENTS.md
+goal*.md
+GOAL*.md
+*GOAL*.md
+RISULTATO_*.md
+prompt*.txt
+docs/EPISODIO_01.md
+
+# Input editoriali e storie generate (resta pubblico solo il modello neutro)
+input/*
+!input/MODELLO_DIALOGO.txt
+
+# Output, cache e dati di ripresa
+work/**
+output/**
+logs/**
+cache/**
+tmp/**
+temp/**
+*.log
+*.tmp
+*.bak
+
+# Modelli e checkpoint locali
+models/**
+!models/.gitkeep
+*.gguf
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Audio e video generati
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.mp4
+*.mkv
+*.webm
+*.mov
+
+# Python, test e ambienti virtuali
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Segreti e configurazioni locali
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+
+# Editor e sistema operativo
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

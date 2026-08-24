@@ -1,0 +1,26 @@
+FROM qwen3-tts-cpu:local
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    STORYCAST_ROOT=/app \
+    CUDA_VISIBLE_DEVICES="" \
+    ATEN_CPU_CAPABILITY=default \
+    ONEDNN_MAX_CPU_ISA=AVX \
+    DNNL_MAX_CPU_ISA=AVX \
+    OMP_NUM_THREADS=2 \
+    MKL_NUM_THREADS=2 \
+    TOKENIZERS_PARALLELISM=false \
+    HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
+    USER=storycast \
+    LOGNAME=storycast \
+    XDG_CACHE_HOME=/tmp/.cache \
+    HF_HOME=/tmp/huggingface \
+    TORCHINDUCTOR_CACHE_DIR=/tmp/torchinductor
+RUN groupadd --gid 1000 storycast \
+    && useradd --uid 1000 --gid 1000 --no-create-home --home-dir /tmp --shell /usr/sbin/nologin storycast
+WORKDIR /app
+COPY storycast/ /app/storycast/
+COPY tests/ /app/tests/
+ENTRYPOINT ["python", "-m", "storycast.tts_cli"]
+CMD ["tts-status"]

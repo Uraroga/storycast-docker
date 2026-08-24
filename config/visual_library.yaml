@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "library_id": "storycast_visual_library_v2_dynamic",
+  "derived_root": "work/visual/library_v1/derived",
+  "character_root": "assets/characters",
+  "group_root": "assets/groups",
+  "extensions": [".png", ".jpg", ".jpeg"],
+  "archive_exclusions": ["approved", "archive"]
+}

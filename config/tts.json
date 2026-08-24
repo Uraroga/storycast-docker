@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "backend": "real",
+  "model": {
+    "id": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+    "local_dir": "/models/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+    "revision": "local-pinned",
+    "license": "Apache-2.0",
+    "expected_size_bytes": 4520222349
+  },
+  "audio": {
+    "sample_rate": 24000,
+    "channels": 1,
+    "sample_width": 2,
+    "subsegment_pause_seconds": 0.18,
+    "utterance_pause_seconds": 0.55,
+    "mock_seconds_per_word": 0.055
+  },
+  "cpu_cooldown": {
+    "enabled": true,
+    "profile": "conservative",
+    "after_inference_seconds": 30,
+    "after_error_extra_seconds": 60,
+    "max_parallel_inferences": 1,
+    "retry_limit": 1
+  },
+  "text": {"max_words": 50, "hard_limit_words": 70, "prudent_max_words": 18, "prudent_hard_limit_words": 24},
+  "verification": {
+    "min_duration_seconds": 0.10,
+    "min_seconds_per_word": 0.015,
+    "max_seconds_per_word": 1.50,
+    "max_silence_percent": 95.0,
+    "max_duration_seconds": 45.0,
+    "duration_outlier_factor": 1.8,
+    "alternate_seed_offset": 100003,
+    "expected_backend": "real",
+    "available_voices": ["Vivian", "Ryan", "Aiden", "Dylan", "Eric", "Ono_Anna", "Serena", "Sohee", "Uncle_Fu"]
+    ,"technical_completeness": {
+      "words_per_second": 2.7,
+      "seconds_per_character": 0.012,
+      "punctuation_seconds": 0.10,
+      "minimum_factor": 0.32,
+      "maximum_factor": 2.8,
+      "absolute_min_seconds": 0.18,
+      "min_active_seconds": 0.25,
+      "min_active_ratio": 0.12,
+      "min_rms": 0.003,
+      "max_silence_percent": 88.0,
+      "silence_amplitude_threshold": 164,
+      "hard_cut_duration_factor": 0.72,
+      "min_natural_tail_seconds": 0.035,
+      "hard_cut_tail_rms": 0.018
+    }
+  }
+}

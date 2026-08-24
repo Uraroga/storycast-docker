@@ -1,0 +1,34 @@
+id: personaggio_1
+versione: 1
+stato: approvato
+ruolo: conduttrice
+
+aspetto:
+  genere: donna
+  eta_apparente: "28-32 anni"
+  capelli: "corti, castano molto scuro, leggermente mossi"
+  occhi: "nocciola"
+  espressione_base: "cordiale, intelligente e sicura"
+  carnagione: "calda e naturale"
+
+abbigliamento:
+  maglietta: "bianca"
+  sovracamicia: "verde petrolio o blu-verde"
+  cuffie: "nere, circumaurali"
+  accessorio: "collana sottile con piccolo ciondolo dorato"
+
+personalita:
+  - curiosa
+  - brillante
+  - cordiale
+  - ironica
+  - energica
+
+regole_visive:
+  - "Mantenere sempre riconoscibili volto, capelli e occhi"
+  - "Non cambiare i colori principali dell'abbigliamento"
+  - "Non imitare personaggi, opere o stili esistenti"
+  - "Usare uno stile illustrato originale e coerente"
+  - "Il microfono deve essere nero e adatto a uno studio podcast"
+
+immagine_principale: "assets/characters/personaggio_1/personaggio_1_talking_open_hand_brightroom_v1.png"

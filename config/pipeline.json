@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "execution": "sequential",
+  "precheck": {
+    "required_characters": [
+      "personaggio_1",
+      "personaggio_2"
+    ]
+  },
+  "short": {
+    "enabled": true,
+    "status": "video_ready",
+    "aspect_ratio": "9:16",
+    "resolution": [1080, 1920],
+    "fps": 30,
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "video_preset": "veryfast",
+    "video_crf": 21,
+    "audio_codec": "aac",
+    "audio_bitrate": "128k",
+    "final_speed": 1.30,
+    "final_hold_seconds": 2.0,
+    "subtitles": true,
+    "display_aliases": {
+      "Ura Roga": "Uraroga"
+    },
+    "subtitle_style": {
+      "font": "DejaVu Sans",
+      "font_size": 68,
+      "margin_left": 90,
+      "margin_right": 150,
+      "margin_bottom": 360,
+      "outline": 5,
+      "shadow": 2,
+      "max_words": 8,
+      "max_chars_per_line": 24,
+      "max_lines": 2,
+      "minimum_seconds": 0.75
+    },
+    "vertical_crop": {
+      "personaggio_1": {"center_x": 0.53, "center_y": 0.50},
+      "personaggio_2": {"center_x": 0.48, "center_y": 0.50},
+      "group": {"center_x": 0.50, "center_y": 0.50}
+    },
+    "visual": {
+      "seed": 93017,
+      "max_scene_seconds": 7.0,
+      "minimum_scene_seconds": 1.0,
+      "max_zoom": 1.025,
+      "prefer_individual": true
+    }
+  }
+}

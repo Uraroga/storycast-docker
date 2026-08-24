@@ -1,0 +1,13 @@
+.git
+assets
+config
+input
+models
+work
+output
+logs
+docs
+*.md
+RISULTATO_*.md
+__pycache__
+*.py[cod]

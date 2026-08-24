@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "video": {"width": 1280, "height": 720, "fps": 30, "codec": "libx264", "pixel_format": "yuv420p", "preset": "veryfast", "crf": 20, "faststart": true},
+  "audio": {"codec": "aac", "bitrate": "192k", "channels": 1, "sample_rate": 24000},
+  "final_speed_version": {"enabled": true, "factor": 1.15, "suffix": "_speed{percent}", "video_preset": "veryfast", "video_crf": 20, "audio_bitrate": "96k"},
+  "story_images": {"directory": "assets/story_images", "extensions": [".png", ".jpg", ".jpeg", ".webp"], "insert_seconds": 6.0, "fade_seconds": 0.4, "opening_guard_seconds": 20.0, "closing_guard_seconds": 30.0, "target_interval_seconds": 60.0, "max_zoom": 1.035},
+  "planner": {"minimum_shot_seconds": 0.45, "opening_seconds": 0.55, "closing_seconds": 0.55, "long_speech_seconds": 6.0, "seed": 44004},
+  "camera": {"max_zoom": 1.045, "intensity": 0.45, "motions": ["static", "slow_zoom_in", "slow_zoom_out", "pan_horizontal"]},
+  "library_planner": {
+    "minimum_scene_seconds": 0.80,
+    "opening_seconds": 0.80,
+    "closing_seconds": 0.80,
+    "reaction_min_speech_seconds": 6.0,
+    "reaction_seconds": 1.0,
+    "alternative_every_occurrences": 3,
+    "long_pose_seconds": 9.0,
+    "max_pose_changes_per_speech": 2,
+    "seed": 71007,
+    "transform": {"scale_filter": "lanczos", "target_resolution": [1280, 720], "preserve_aspect_ratio": true}
+  }
+}

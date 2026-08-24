@@ -1,0 +1,22 @@
+id: storycast_room
+versione: 1
+stato: approvato
+
+reference_principale: "assets/groups/group_01_duo_neutral_brightroom_v1.png"
+
+elementi_fissi:
+  - "stessa stanza podcast"
+  - "stesso tavolo in legno"
+  - "stessi due microfoni neri"
+  - "stesse sedie"
+  - "stessa insegna Storycast"
+  - "stesse piante e scaffalature"
+  - "stessa illuminazione calda"
+  - "stessi colori e stile illustrato"
+
+regole:
+  - "I volti e gli abiti dei personaggi devono restare invariati"
+  - "La disposizione degli arredi deve restare riconoscibile"
+  - "Possono cambiare posa, espressione e inquadratura"
+  - "Non introdurre personaggi aggiuntivi"
+  - "Non imitare opere o stili esistenti"

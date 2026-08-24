@@ -1,0 +1,5 @@
+[personaggio_1|curiosa]
+Inserisci qui la prima battuta.
+
+[personaggio_2|riflessivo]
+Inserisci qui la seconda battuta.
