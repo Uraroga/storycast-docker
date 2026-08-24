@@ -53,13 +53,13 @@ cd storycast-docker
 ./avvia-storycast.sh help
 ```
 
-Lo script non installa nulla sull'host. Richiede Docker già avviato e immagini locali già costruite. Le immagini richieste sono:
+Lo script non installa nulla sull'host. Richiede Docker già avviato. Da un clone nuovo costruire l'intera catena con:
 
 ```bash
-docker compose build storycast-controller storycast-tts storycast-renderer
+./build-storycast.sh
 ```
 
-La build TTS parte da `qwen3-tts-cpu:local`; il renderer parte da `voiceover-to-video:local`. Queste immagini base devono quindi già esistere localmente. Non viene eseguito alcun download automatico.
+Lo script crea anche le basi `qwen3-tts-cpu:local` e `voiceover-to-video:local` dai Dockerfile inclusi. Non scarica il modello AI: usare esplicitamente `./download-model.sh` oppure impostare `STORYCAST_MODELS_HOST`, come spiegato in `docs/MODELLI.md`.
 
 ## 4. Comandi disponibili
 

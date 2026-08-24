@@ -6,19 +6,20 @@ Alla creazione `state.json` registra il profilo attivo. Un cambio globale succes
 
 ## Fine del lavoro
 
-Dopo aver salvato il risultato fuori dal progetto, usare `elimina-storia --nome SLUG --dry-run` e poi `--yes`. Per eliminare tutte le storie, prove, cache e output runtime usare `azzera-lavori`; nessuno dei due comandi crea archivi o backup. Il modello neutro `input/MODELLO_DIALOGO.txt` resta disponibile.
+Dopo aver salvato il risultato fuori dal progetto, usare `elimina-storia --nome SLUG --dry-run` e poi `--yes`. Per eliminare tutte le storie, prove, cache e output runtime usare `azzera-lavori`; nessuno dei due comandi crea archivi o backup. Il bundle neutro `input/MODELLO_DIALOGO.txt` e `input/MODELLO_DIALOGO-short.txt` resta disponibile.
 
 ## Pipeline
 
 `genera` orchestra in sequenza validazione, parsing, mapping delle voci, piano e inferenza TTS, QC tecnico, merge, manifest, timeline reale, libreria visiva, piano scene, rendering e verifica finale. Riusa i moduli Storycast esistenti e carica il modello una sola volta per il gruppo di segmenti mancanti.
 
+Prima dell'avvio devono esistere entrambi `input/nuova_storia.txt` e `input/nuova_storia-short.txt`. Lo Short associato è obbligatorio, usa lo stesso nome con suffisso `-short` e deve contenere entrambi i personaggi configurati. I file `MODELLO_DIALOGO*` inclusi nel repository sono un esempio neutro eseguibile.
+
 ```bash
 ./avvia-storycast.sh genera input/nuova_storia.txt
 ./avvia-storycast.sh genera --input input/nuova_storia.txt --nome nuova_storia
-./avvia-storycast.sh genera
 ```
 
-L'ultimo comando usa `input/dialogo.txt`. Gli input assoluti e quelli fuori da `input/` sono rifiutati.
+Gli input assoluti e quelli fuori da `input/` sono rifiutati.
 
 ## Struttura
 

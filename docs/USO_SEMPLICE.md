@@ -2,8 +2,8 @@
 
 Controllare senza modello con `verifica-segmenti --nome SLUG`. Prima di riparare usare `ripara-sospetti --nome SLUG --dry-run`, poi selezionare il solo indice. Le inferenze reali attendono 30 secondi; le cache valide no.
 
-1. Crea `input/nome_storia.txt`.
-2. Inserisci almeno una battuta nel formato documentato.
+1. Crea `input/nome_storia.txt` e il relativo `input/nome_storia-short.txt`.
+2. Inserisci in entrambi almeno una battuta per ciascun personaggio configurato, nel formato documentato.
 3. Esegui `./avvia-storycast.sh genera input/nome_storia.txt`.
 4. Apri `output/nome_storia/nome_storia_audio.wav` e `output/nome_storia/nome_storia_video.mp4`.
 

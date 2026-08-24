@@ -147,7 +147,7 @@ case "${1:-help}" in
   test-face-animation)
     shift
     if ! docker image inspect storycast-renderer:local >/dev/null 2>&1; then
-      echo "Immagine storycast-renderer:local assente. Crearla con: docker compose build storycast-renderer" >&2
+      echo "Immagine storycast-renderer:local assente. Crearla con: ./build-storycast.sh" >&2
       exit 3
     fi
     exec docker compose -f "$PROJECT_DIR/docker-compose.yml" run --rm --entrypoint python storycast-renderer /app/scripts/face_animation_poc.py "$@"
@@ -168,7 +168,7 @@ required_image="$IMAGE_NAME"
 [[ "$service" == "storycast-tts" ]] && required_image="storycast-tts:local"
 [[ "$service" == "storycast-renderer" ]] && required_image="storycast-renderer:local"
 if ! docker image inspect "$required_image" >/dev/null 2>&1; then
-  echo "Immagine $required_image assente. Crearla con: docker compose build $service" >&2; exit 3
+  echo "Immagine $required_image assente. Crearla con: ./build-storycast.sh" >&2; exit 3
 fi
 if [[ "$command" == "test" ]]; then
   docker compose -f "$PROJECT_DIR/docker-compose.yml" run --rm --entrypoint python storycast-controller -m unittest discover -s tests -p "test_storycast.py" -v

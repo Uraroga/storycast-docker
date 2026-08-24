@@ -92,6 +92,17 @@ class EpisodeBundleTests(unittest.TestCase):
         tts.assert_not_called()
         render.assert_not_called()
 
+    def test_bundle_pubblico_modello_dialogo_e_eseguibile(self):
+        project_root = Path(__file__).resolve().parents[1]
+        bundle = precheck_episode_bundle(
+            project_root, project_root / "input/MODELLO_DIALOGO.txt"
+        )
+        self.assertEqual(bundle.short_path.name, "MODELLO_DIALOGO-short.txt")
+        self.assertEqual(
+            {entry["speaker"] for entry in bundle.short_entries},
+            {"personaggio_1", "personaggio_2"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

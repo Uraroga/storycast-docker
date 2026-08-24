@@ -1,0 +1,10 @@
+accelerate==1.12.0
+einops==0.8.2
+librosa==0.11.0
+numpy==2.4.6
+onnxruntime==1.29.0
+safetensors==0.8.0
+sentencepiece==0.2.2
+soundfile==0.14.0
+sox==1.5.0
+transformers==4.57.3

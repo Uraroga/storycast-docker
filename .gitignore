@@ -10,6 +10,7 @@ docs/EPISODIO_01.md
 # Input editoriali e storie generate (resta pubblico solo il modello neutro)
 input/*
 !input/MODELLO_DIALOGO.txt
+!input/MODELLO_DIALOGO-short.txt
 
 # Output, cache e dati di ripresa
 work/**

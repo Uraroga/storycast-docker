@@ -1,6 +1,6 @@
 # Formato del dialogo
 
-Il file `input/dialogo.txt` deve essere UTF-8. Ogni battuta comincia con un'intestazione fra parentesi quadre e prosegue fino alla successiva intestazione.
+Ogni file sotto `input/` deve essere UTF-8. La pipeline universale richiede la coppia `input/<nome>.txt` e `input/<nome>-short.txt`; ogni battuta comincia con un'intestazione fra parentesi quadre e prosegue fino alla successiva intestazione.
 
 ```text
 [personaggio_1|curiosa|scena=sorride al microfono|pausa=0.4]

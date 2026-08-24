@@ -1,0 +1,5 @@
+[personaggio_1|curiosa]
+Ecco una breve introduzione di esempio.
+
+[personaggio_2|riflessivo]
+Questo è il secondo intervento neutro.

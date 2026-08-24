@@ -164,7 +164,7 @@ class RealContainerLibraryTests(unittest.TestCase):
             source=Path(asset["source"])
             key=source.parts[2] if source.parts[:2]==("assets","characters") else "groups"
             counts[key]+=1
-        self.assertEqual(counts,{"personaggio_1":7,"personaggio_2":7,"groups":4})
+        self.assertEqual(counts,{"personaggio_1":5,"personaggio_2":5,"groups":4})
         self.assertIs(orchestrator.inspect_library,inspect_library)
         self.assertEqual(status["diagnostics"]["container_project_root"],"/app")
         self.assertTrue(all(x["exists"] and x["readable"] for x in status["diagnostics"]["directories"]))

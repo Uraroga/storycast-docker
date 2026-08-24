@@ -6,8 +6,8 @@ Il TTS reale usa il profilo CPU prudente (30 s dopo ogni inferenza, più 60 s pr
 
 ## Creare una storia in quattro passi
 
-1. Scrivi un dialogo nel formato Storycast.
-2. Salvalo sotto `input/`, per esempio `input/nome_storia.txt`.
+1. Scrivi il dialogo principale e il relativo Short nel formato Storycast.
+2. Salvali come `input/nome_storia.txt` e `input/nome_storia-short.txt`.
 3. Esegui:
 
    ```bash
@@ -19,15 +19,43 @@ Il TTS reale usa il profilo CPU prudente (30 s dopo ogni inferenza, più 60 s pr
    ```text
    output/nome_storia/nome_storia_audio.wav
    output/nome_storia/nome_storia_video.mp4
+   output/nome_storia/nome_storia_short_audio.wav
+   output/nome_storia/nome_storia_short_video.mp4
    ```
 
-Il comando valida il testo, associa le voci configurate, genera sequenzialmente i WAV con Qwen3-TTS, esegue il controllo tecnico, unisce l'audio, crea timeline e regia visiva, renderizza e verifica il video. Tutto avviene offline in Docker; sull'host non viene installato nulla.
+Entrambi i file sono obbligatori prima della pipeline universale e devono contenere i personaggi configurati. Il comando valida il bundle, associa le voci, genera sequenzialmente i WAV con Qwen3-TTS, esegue il controllo tecnico, unisce l'audio, crea timeline e regia visiva, renderizza e verifica video principale e Short. Tutto avviene offline in Docker; sull'host non viene installato nulla.
 
 Il codice Python locale è montato read-only in tutti i servizi Docker: dopo una modifica al motore non serve ricostruire le immagini. Il rebuild è necessario soltanto se cambiano Dockerfile o dipendenze di base.
 
 La libreria visiva reale viene scoperta ricorsivamente in `assets/characters/<id>/` e `assets/groups/`. I riferimenti `immagine_principale` nelle schede personaggio sono opzionali e non alimentano il montaggio; le sottocartelle `approved` e `archive` sono escluse dal catalogo. Per verificare esattamente directory, permessi e conteggi visti dal container usare `./avvia-storycast.sh visual-library-check`.
 
-Esempio minimo:
+Gli esempi minimi realmente pubblicati sono `input/MODELLO_DIALOGO.txt` e `input/MODELLO_DIALOGO-short.txt`.
+
+## Installazione da zero
+
+Servono Docker Engine con Compose v2, spazio per immagini e modello, e almeno 8 GB di RAM disponibili al TTS. Il repository contiene codice, Dockerfile e asset; non contiene immagini Docker binarie, modello AI, input reali o output.
+
+```bash
+git clone https://github.com/Uraroga/storycast-docker
+cd storycast-docker
+./download-model.sh
+./build-storycast.sh
+./avvia-storycast.sh precheck input/MODELLO_DIALOGO.txt --nome esempio
+./avvia-storycast.sh piano --input input/MODELLO_DIALOGO.txt --nome esempio --dry-run
+```
+
+`download-model.sh` è l'azione esplicita che scarica il modello ufficiale (circa 4,2 GiB); `build-storycast.sh` non lo scarica. In alternativa:
+
+```bash
+export STORYCAST_MODELS_HOST=/percorso/alla/directory-che-contiene-il-modello
+./build-storycast.sh
+```
+
+La directory indicata deve contenere `Qwen3-TTS-12Hz-1.7B-CustomVoice/`. Struttura e verifica sono in [MODELLI.md](docs/MODELLI.md). La build è idempotente; `STORYCAST_FORCE_BASE_BUILD=1 ./build-storycast.sh` forza la ricostruzione delle basi.
+
+La preparazione può richiedere Internet per immagini pubbliche, pacchetti e modello. L'esecuzione è offline: i servizi usano `network_mode: none`, `HF_HUB_OFFLINE=1` e `TRANSFORMERS_OFFLINE=1`.
+
+Formato minimo del dialogo:
 
 ```text
 [personaggio_1|curiosa]
@@ -122,18 +150,19 @@ Dopo aver copiato il risultato fuori dal progetto, gli artefatti generati di una
 
 Per le nuove storie il profilo predefinito è `english_default`: testo e lingua dichiarata restano italiani, mentre tono e ritmo sono formulati in inglese. Il profilo `italian_legacy` resta disponibile. Vedere [Istruzioni vocali](docs/ISTRUZIONI_VOCALI.md).
 
-## Requisiti
+## Requisiti e build manuale
 
 - Docker con Compose;
 - almeno 8 GB di RAM disponibili al servizio TTS;
 - modello Qwen3-TTS locale montato read-only come descritto in [MODELLI.md](docs/MODELLI.md);
-- nessuna rete richiesta.
+- nessuna rete richiesta durante l'utilizzo, dopo la preparazione.
 
-Colloca il modello sotto `models/` oppure indica la directory che lo contiene, quindi costruisci le immagini:
+Il percorso raccomandato è `./build-storycast.sh`. Per una build manuale completa, l'ordine è:
 
 ```bash
-export STORYCAST_MODELS_HOST=/percorso/al/modello
-docker compose build
+docker build -f docker/base-tts/Dockerfile -t qwen3-tts-cpu:local .
+docker build -f docker/base-renderer/Dockerfile -t voiceover-to-video:local .
+docker compose build storycast-controller storycast-tts storycast-renderer
 ```
 
 Se le immagini base e tutte le dipendenze sono già nella cache Docker, la build può essere forzata offline:
@@ -182,6 +211,7 @@ Il codice è distribuito secondo la [licenza MIT](LICENSE). Il modello Qwen3-TTS
 - [Cancellazione e reset](docs/CANCELLAZIONE_STORIA.md)
 - [Formato dialogo](docs/FORMATO_DIALOGO.md)
 - [Architettura](docs/ARCHITETTURA.md)
+- [Build riproducibile](docs/BUILD_RIPRODUCIBILE.md) e [modello](docs/MODELLI.md)
 - [TTS](docs/TTS.md) e [libreria visiva](docs/LIBRERIA_VISIVA.md)
 
 I comandi storici dell'episodio 01, del TTS e del renderer restano disponibili per compatibilità e diagnosi; `./avvia-storycast.sh help` ne mostra l'elenco.
