@@ -12,28 +12,28 @@ Il controller è Python standard library in un container `python:3.11-slim`, sen
 - `models/`: punto previsto per modelli locali; il modello già disponibile è riusato tramite volume esterno read-only.
 - `assets/`: immagini sorgente immutabili dei personaggi e dei gruppi; `approved` e `archive` sono escluse dal catalogo video.
 - `storycast/`: parser, validazione, timeline e CLI.
-- `scripts/`: strumenti futuri specifici.
+- `scripts/`: strumenti accessori, tra cui la prova isolata di animazione facciale.
 - `tests/`: test automatici senza modelli.
 - `work/`: JSON e media intermedi rigenerabili.
-- `output/`: risultati finali futuri.
+- `output/`: audio, video, sottotitoli, timeline e report finali.
 - `logs/`: log sintetici persistenti di ogni esecuzione reale, con `latest.log` e conservazione degli ultimi 20 file riconosciuti.
 - `docs/`: specifiche e roadmap.
 
 ## Pipeline
 
-`storycast-controller` valida dialogo e timeline. Lo script indirizza audio a `storycast-tts` e immagini/render a `storycast-renderer`, eseguiti in sequenza. Il catalogo firma ogni ritaglio con master, coordinate e risoluzione; il planner trasforma la timeline reale in scene contigue; FFmpeg produce segmenti H.264 e il mux finale AAC. File e nomi deterministici consentono ripresa e cache.
+`storycast-controller` offre parsing, validazione e timeline preliminare. Per i comandi dedicati lo script indirizza audio a `storycast-tts` e immagini/render a `storycast-renderer`; per `genera` avvia invece `storycast.orchestrator` in `storycast-tts`, dove Python coordina TTS, regia e FFmpeg in sequenza. Il catalogo firma ogni ritaglio con master, coordinate e risoluzione; il planner trasforma la timeline reale in scene contigue; FFmpeg produce segmenti H.264 e il mux finale AAC. File e nomi deterministici consentono ripresa e cache.
 
-Gli episodi usano namespace dedicati (`work/episode_01`, manifest/timeline/piano nominati e output separati). L'orchestratore shell attraversa TTS, merge, planner, render e check in container distinti, così TTS e rendering non sono contemporanei.
+Il flusso storico `episode-01-build` usa namespace dedicati (`work/episode_01`, manifest/timeline/piano nominati e output separati) e attraversa TTS, merge, planner, render e check in container distinti. Il flusso universale `genera` usa un unico servizio TTS anche per FFmpeg; entrambi eseguono le fasi in sequenza.
 
 Il comando universale usa `storycast.orchestrator` nel servizio batch TTS e rimappa i percorsi dei moduli esistenti verso `work/episodes/<slug>/` e `output/<slug>/`. Inferenza e FFmpeg restano sequenziali. Lo stato atomico e i sidecar firmati consentono ripresa a livello di WAV, audio, piano, crop e singola scena. I percorsi fissi dell'episodio 01 restano soltanto nei moduli legacy compatibili, non nell'orchestratore generale.
 
 Il lock è per slug e combina hostname, PID e istante di avvio letto da `/proc`; questo distingue un processo attivo da un PID riciclato o da un container terminato. I lock obsoleti vengono conservati con suffisso timestamp.
 
-Il parser non contiene un elenco fisso di personaggi: carica ogni YAML nella directory dedicata e verifica gli ID duplicati. Il riferimento master è opzionale; gli asset effettivi vengono validati dal loader dinamico. Aggiungere un terzo personaggio richiede una nuova configurazione, una voce e una directory `assets/characters/<id>/`, non modifiche al motore.
+Il parser non contiene un elenco fisso di personaggi: carica ogni YAML nella directory dedicata e verifica gli ID duplicati. Il riferimento master è opzionale; gli asset effettivi vengono validati dal loader dinamico. Aggiungere un terzo personaggio richiede una nuova configurazione, una voce e una directory `assets/characters/<id>/` e il crop verticale Short in `config/pipeline.json`, non modifiche al motore.
 
 ## Sicurezza dei dati
 
-Nel Compose `assets`, `config`, `input` e modelli sono read-only. Soltanto `work`, `output` e `logs` sono scrivibili. Entrambi i servizi hanno rete disabilitata; TTS usa `no-new-privileges`, nessuna GPU e limiti ISA AVX. `clean-work` inventaria l'intera directory `work/`, preserva soltanto eventuali `.gitkeep` e richiede dry-run e conferma esplicita.
+Nel Compose `assets`, `config`, `input` e modelli sono read-only. Soltanto `work`, `output` e `logs` sono scrivibili. Tutti e quattro i servizi hanno rete disabilitata; TTS usa `no-new-privileges`, nessuna GPU e limiti ISA AVX. `clean-work` inventaria l'intera directory `work/`, preserva soltanto eventuali `.gitkeep` e richiede dry-run e conferma esplicita.
 
 Il nuovo orchestratore accetta input esclusivamente sotto `input/`, applica una regex allo slug e costruisce ogni destinazione da componenti già validati. Un hash input diverso per uno slug esistente blocca la sovrascrittura.
 ## Bundle episodio e Short
