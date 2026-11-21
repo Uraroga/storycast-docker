@@ -1,5 +1,9 @@
 # Storycast
 
+<p align="center">
+  <img src="assets/mascotte-storycast.png" alt="Mascotte di Storycast: robot bianco e blu con cuffie e ciak, tra pellicole e strumenti audio." width="380">
+</p>
+
 Storycast trasforma copioni strutturati in italiano in un **episodio audio/video e uno Short verticale con sottotitoli**. Associa le battute alle voci dei personaggi, sintetizza il parlato localmente con Qwen3-TTS e monta immagini e audio con FFmpeg. È pensato per produzioni ripetibili su CPU, con configurazioni esplicite, cache verificata e ripresa delle lavorazioni interrotte.
 
 Il repository include il motore Python, gli script Bash, i Dockerfile, le configurazioni e una libreria di immagini. Modello AI e risultati generati restano esterni alla distribuzione Git. La preparazione richiede Internet; l'elaborazione successiva avviene offline nei container.
