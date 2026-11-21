@@ -1,4 +1,4 @@
-# Storycast
+<h1 align="center">Storycast</h1>
 
 <p align="center">
   <img src="assets/mascotte-storycast.png" alt="Mascotte di Storycast: robot bianco e blu con cuffie e ciak, tra pellicole e strumenti audio." width="380">
